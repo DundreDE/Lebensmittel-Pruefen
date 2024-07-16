@@ -2,11 +2,11 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Lebensmittelunverträglichkeit Prüfer</title>
+    <title>Unverträglichkeit's Prüfer</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Lebensmittelunverträglichkeit Prüfer</h1>
+    <h1>Unverträglichkeit's Prüfer</h1>
     <form id="intolerance-form">
         <label for="intolerance">Unverträglichkeit eingeben:</label>
         <!--
@@ -39,6 +39,13 @@
         <input type="text" id="barcode" value="0737628064502">
         <button type="button" onclick="checkProduct()">Prüfen</button>
     </form>
+    <button id="scan-button" onclick="startScanner()">Barcode scannen</button>
+    <div id="scanner"></div>
+    <div id="result"></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+
+
     <div id="result"></div>
     <script src="scripts.js"></script>
 </body>
