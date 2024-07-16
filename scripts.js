@@ -6,6 +6,11 @@ async function checkProduct() {
     const barcode = document.getElementById('barcode').value;
     const intolerance = document.getElementById('intolerance').value;
     const resultDiv = document.getElementById('result');
+    const ingredientsDiv = document.getElementById('ingredients');
+    const productImage = document.getElementById('product-image');
+
+    // Bild ausblenden, falls es angezeigt wird
+    productImage.style.display = 'none';
 
     if (!barcode || !intolerance) {
         resultDiv.textContent = "Bitte alle Felder ausfüllen.";
@@ -14,7 +19,7 @@ async function checkProduct() {
     }
 
     try {
-        const response = await fetch(`https://world.openfoodfacts.org/api/v0/product/${barcode}.json`);
+        const response = await fetch(`https://world.openfoodfacts.org/api/v0/product/${barcode}.json?lang=de`);
         const data = await response.json();
 
         if (!data.product) {
@@ -23,31 +28,52 @@ async function checkProduct() {
             return;
         }
 
-        const ingredients = data.product.ingredients_text || 'Keine Zutaten gefunden';
-        const ingredientsList = ingredients.toLowerCase().split(', '); // Zutatenliste in ein Array umwandeln
-        const intoleranceLower = intolerance.toLowerCase();
-        let allowed = true;
-        let reason = '';
+        // Zutaten auf Deutsch oder Englisch
+        let ingredients = data.product.ingredients_text_de || data.product.ingredients_text || 'Keine Zutaten gefunden';
 
-        for (const ingredient of ingredientsList) {
-            if (ingredient.includes(intoleranceLower)) {
-                allowed = false;
-                reason = ingredient;
-                break;
+        // Wenn keine deutschen oder englischen Zutaten gefunden werden, wird 'Keine Zutaten gefunden' angezeigt
+        if (ingredients === 'Keine Zutaten gefunden') {
+            resultDiv.textContent = `Für dieses Produkt sind keine Zutaten verfügbar.`;
+        } else {
+            const ingredientsList = ingredients.toLowerCase().split(', '); // Zutatenliste in ein Array umwandeln
+            const intoleranceLower = intolerance.toLowerCase();
+            let allowed = true;
+            let reason = '';
+
+            for (const ingredient of ingredientsList) {
+                if (ingredient.includes(intoleranceLower)) {
+                    allowed = false;
+                    reason = ingredient;
+                    break;
+                }
+            }
+
+            if (allowed) {
+                resultDiv.textContent = `Das Produkt kann konsumiert werden. Inhalt: ${ingredients}`;
+            } else {
+                resultDiv.textContent = `Dieses Produkt darfst du nicht essen. Grund: ${reason}. Andere Zutaten: ${ingredients}`;
             }
         }
-
-        if (allowed) {
-            resultDiv.textContent = `Das Produkt kann konsumiert werden. Inhalt: ${ingredients}`;
-        } else {
-            resultDiv.textContent = `Dieses Produkt darfst du nicht essen. Grund: ${reason}. Andere Zutaten: ${ingredients}`;
-        }
         resultDiv.style.display = 'block';
+
+       
+
+        // Laden des Verpackungsbilds
+        const imageUrl = data.product.image_url;
+        if (imageUrl) {
+            productImage.src = imageUrl;
+            productImage.style.display = 'block'; // Zeige das Bild an, wenn verfügbar
+        } else {
+            productImage.style.display = 'none'; // Verstecke das Bild, falls kein Bild verfügbar ist
+        }
+
     } catch (error) {
         resultDiv.textContent = "Fehler beim Abrufen der Produktinformationen.";
         resultDiv.style.display = 'block';
     }
 }
+
+
 
 function startScanner() {
     const scannerDiv = document.getElementById('scanner');

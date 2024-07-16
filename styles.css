@@ -88,8 +88,8 @@ button:hover {
 }
 
 @media (max-width: 600px) {
-    .container {
-        padding: 10px;
+    form, #result, #scanner {
+        width: 100%;
     }
 
     form, #result, #scanner {
