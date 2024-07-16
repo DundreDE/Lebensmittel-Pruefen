@@ -9,12 +9,34 @@
     <h1>Lebensmittelunverträglichkeit Prüfer</h1>
     <form id="intolerance-form">
         <label for="intolerance">Unverträglichkeit eingeben:</label>
+        <!--
         <input type="text" id="intolerance" list="intolerances" autocomplete="off">
+        -->
         <datalist id="intolerances"></datalist>
+        <select name="intolerance" id="intolerance">
+            <option value="Platzhalter"></option>
+            <option value="pepper">Pfeffer</option>
+            <option value="gluten">Gluten</option>
+            <option value="crustaceans">Krebstiere</option>
+            <option value="eggs">Eier</option>
+            <option value="fish">Fisch</option>
+            <option value="peanuts">Erdnüsse</option>
+            <option value="soy">Soja</option>
+            <option value="nuts">Schalenfrüchte</option>
+            <option value="celery">Sellerie</option>
+            <option value="Mustard">Senf</option>
+            <option value="sesame">Sesam</option>
+            <option value="sulfur">Schwefel</option>
+            <option value="Lupine">Lupine</option>
+            <option value="molluscs">Weichtiere</option>
+        </select> 
+
+
+
     </form>
     <form id="product-form">
         <label for="barcode">Produkt Barcode eingeben:</label>
-        <input type="text" id="barcode">
+        <input type="text" id="barcode" value="0737628064502">
         <button type="button" onclick="checkProduct()">Prüfen</button>
     </form>
     <div id="result"></div>
