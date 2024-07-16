@@ -83,5 +83,3 @@ function startScanner() {
         Quagga.stop();
     });
 }
-
-
