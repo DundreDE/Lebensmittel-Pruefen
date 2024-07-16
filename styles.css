@@ -2,29 +2,51 @@
 
 body {
     font-family: 'Arial', sans-serif;
+<<<<<<< HEAD
     background: linear-gradient(45deg, #6a11cb, #2575fc); /* Schicker Farbverlauf um 45 Grad gedreht */
+=======
+    background: linear-gradient(90deg, #6a11cb, #2575fc); /* Schicker Farbverlauf um 45 Grad gedreht */
+>>>>>>> fbedbde717f09f97f92a2a6c3198ab5edde0e5b9
     margin: 0;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+<<<<<<< HEAD
     height: 100vh;
+=======
+    /*height: 100vh;*/
+>>>>>>> fbedbde717f09f97f92a2a6c3198ab5edde0e5b9
     color: #fff; /* Textfarbe auf weiß setzen, um sich vom Hintergrund abzuheben */
 }
 
 .container {
     display: flex;
+<<<<<<< HEAD
     flex-direction: column;
+=======
+    flex-direction: column; /* Elemente untereinander anordnen */
+>>>>>>> fbedbde717f09f97f92a2a6c3198ab5edde0e5b9
     align-items: center;
     gap: 20px; /* Abstand zwischen den Elementen */
     width: 100%;
     max-width: 400px;
+<<<<<<< HEAD
 }
 
 h1 {
     color: #fff;
     font-size: 2.5em;
     text-align: center; /* Zentriert den Text */
+=======
+    padding: 20px;
+    box-sizing: border-box; /* Inkludiert Padding in die Breite */
+}
+
+h1 {
+    text-align: center; /* Zentriert den Text im <h1> Element */
+    margin-bottom: 20px;
+>>>>>>> fbedbde717f09f97f92a2a6c3198ab5edde0e5b9
 }
 
 form {
@@ -33,6 +55,10 @@ form {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
+<<<<<<< HEAD
+=======
+    margin-bottom: 20px; /* Abstand nach unten */
+>>>>>>> fbedbde717f09f97f92a2a6c3198ab5edde0e5b9
     backdrop-filter: blur(10px); /* Weicher Unschärfeeffekt */
 }
 
@@ -43,6 +69,7 @@ label {
     color: #fff;
 }
 
+select,
 input[type="text"] {
     width: calc(100% - 22px);
     padding: 10px;
@@ -68,6 +95,7 @@ button:hover {
     background-color: #0056b3;
 }
 
+<<<<<<< HEAD
 #scanner {
     width: 100%;
     height: 300px;
@@ -94,5 +122,34 @@ button:hover {
 
     form, #result, #scanner {
         width: 100%;
+    }
+=======
+#scan-button {
+    margin-top: 20px;
+>>>>>>> fbedbde717f09f97f92a2a6c3198ab5edde0e5b9
+}
+
+#scanner {
+    width: 100%;
+    height: 300px;
+    display: none;
+    margin-bottom: 20px;
+}
+
+#result {
+    display: none; /* Start as hidden */
+    background: rgba(255, 255, 255, 0.2); /* Transparenter Hintergrund */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    font-size: 1em;
+    color: #fff;
+    backdrop-filter: blur(10px); /* Weicher Unschärfeeffekt */
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
     }
 }
