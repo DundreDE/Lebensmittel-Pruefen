@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Lebensmittelunverträglichkeit Prüfer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Lebensmittelunverträglichkeit Prüfer</h1>
+    <form id="intolerance-form">
+        <label for="intolerance">Unverträglichkeit eingeben:</label>
+        <input type="text" id="intolerance" list="intolerances" autocomplete="off">
+        <datalist id="intolerances"></datalist>
+    </form>
+    <form id="product-form">
+        <label for="barcode">Produkt Barcode eingeben:</label>
+        <input type="text" id="barcode">
+        <button type="button" onclick="checkProduct()">Prüfen</button>
+    </form>
+    <div id="result"></div>
+    <script src="scripts.js"></script>
+</body>
+</html>
