@@ -9,6 +9,7 @@ async function checkProduct() {
 
     if (!barcode || !intolerance) {
         resultDiv.textContent = "Bitte alle Felder ausfüllen.";
+        resultDiv.style.display = 'block';
         return;
     }
 
@@ -18,21 +19,69 @@ async function checkProduct() {
 
         if (!data.product) {
             resultDiv.textContent = "Produkt nicht gefunden.";
+            resultDiv.style.display = 'block';
             return;
         }
 
         const ingredients = data.product.ingredients_text || 'Keine Zutaten gefunden';
-        const allowed = !ingredients.toLowerCase().includes(intolerance.toLowerCase());
+        const ingredientsList = ingredients.toLowerCase().split(', '); // Zutatenliste in ein Array umwandeln
+        const intoleranceLower = intolerance.toLowerCase();
+        let allowed = true;
+        let reason = '';
+
+        for (const ingredient of ingredientsList) {
+            if (ingredient.includes(intoleranceLower)) {
+                allowed = false;
+                reason = ingredient;
+                break;
+            }
+        }
 
         if (allowed) {
             resultDiv.textContent = `Das Produkt kann konsumiert werden. Inhalt: ${ingredients}`;
         } else {
-            resultDiv.textContent = `Das Produkt darf nicht konsumiert werden. Inhalt: ${ingredients}`;
+            resultDiv.textContent = `Dieses Produkt darfst du nicht essen. Grund: ${reason}. Andere Zutaten: ${ingredients}`;
         }
+        resultDiv.style.display = 'block';
     } catch (error) {
         resultDiv.textContent = "Fehler beim Abrufen der Produktinformationen.";
+        resultDiv.style.display = 'block';
     }
 }
 
+function startScanner() {
+    const scannerDiv = document.getElementById('scanner');
+    scannerDiv.style.display = 'block';
+
+    Quagga.init({
+        inputStream: {
+            name: "Live",
+            type: "LiveStream",
+            target: document.querySelector('#scanner'),
+            constraints: {
+                width: 400,
+                height: 300,
+                facingMode: "environment"
+            },
+        },
+        decoder: {
+            readers: ["ean_reader"]
+        },
+    }, function (err) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        console.log("Quagga initialisiert");
+        Quagga.start();
+    });
+
+    Quagga.onDetected(function (result) {
+        const code = result.codeResult.code;
+        document.getElementById('barcode').value = code;
+        scannerDiv.style.display = 'none';
+        Quagga.stop();
+    });
+}
 
 
