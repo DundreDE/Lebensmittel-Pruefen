@@ -2,13 +2,13 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(45deg, #6a11cb, #2575fc); /* Schicker Farbverlauf um 45 Grad gedreht */
+    background: linear-gradient(90deg, #6a11cb, #2575fc); /* Schicker Farbverlauf um 45 Grad gedreht */
     margin: 0;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    /*height: 100vh;*/
     color: #fff; /* Textfarbe auf weiß setzen, um sich vom Hintergrund abzuheben */
 }
 

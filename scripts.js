@@ -1,3 +1,5 @@
+
+
 document.addEventListener('DOMContentLoaded', () => {
     // Die Liste der Unverträglichkeiten bleibt am Anfang leer
 });
@@ -52,7 +54,7 @@ async function checkProduct() {
 function startScanner() {
     const scannerDiv = document.getElementById('scanner');
     scannerDiv.style.display = 'block';
-
+    //const Quagga = require('quagga').default; 
     Quagga.init({
         inputStream: {
             name: "Live",
@@ -61,11 +63,11 @@ function startScanner() {
             constraints: {
                 width: 400,
                 height: 300,
-                facingMode: "environment"
+                facingMode: "user"
             },
         },
         decoder: {
-            readers: ["ean_reader"]
+            readers: ['ean_reader', 'code_128_reader', 'ean_8_reader', 'code_39_reader', 'code_39_vin_reader', 'codabar_reader', 'upc_reader', 'upc_e_reader', 'i2of5_reader']
         },
     }, function (err) {
         if (err) {
@@ -77,9 +79,19 @@ function startScanner() {
     });
 
     Quagga.onDetected(function (result) {
+        alert("Detected barcode: " + result.codeResult.code);
         const code = result.codeResult.code;
         document.getElementById('barcode').value = code;
         scannerDiv.style.display = 'none';
         Quagga.stop();
     });
+
+    Quagga.onProcessed(function (result) {
+        //const code = result.codeResult.code;
+        //document.getElementById('barcode').value = code;
+        //scannerDiv.style.display = 'none';
+       // alert("Proc barcode: ")// + result.codeResult.code);
+        //Quagga.stop();
+    });
+
 }
