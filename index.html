@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Unverträglichkeit's Prüfer</title>
     <link rel="stylesheet" href="styles.css">
-
+    <script src="https://cdn.rawgit.com/serratus/quaggaJS/0420d5e0/dist/quagga.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -40,13 +40,15 @@
         
         <button id="scan-button" onclick="startScanner()">Barcode scannen</button>
         
+        <div id="scanner"></div>
+
         <div id="result">
             <!-- Hier werden die Ergebnisse angezeigt -->
             <p id="result-text"></p>
             <img id="product-image" src="" alt="Produktbild" style="max-width: 100%; display: none;">
         </div>
     </div>
-
+    
     <div id="credits">
         <p>
             <a href="https://github.com/MartinMohr" target="_blank" style="color: white; text-decoration: none;">@MartinMohr</a> 
