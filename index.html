@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Unverträglichkeit's Prüfer</title>
     <link rel="stylesheet" href="styles.css">
+
 </head>
 <body>
     <div class="container">
@@ -27,29 +28,32 @@
                 <option value="sulfur">Schwefel</option>
                 <option value="Lupine">Lupine</option>
                 <option value="molluscs">Weichtiere</option>
+                <option value="lactose">Laktose</option>
             </select>
         </form>
         
         <form id="product-form">
             <label for="barcode">Produkt Barcode eingeben:</label>
             <input type="text" id="barcode" value="0737628064502">
-            <button type="button" onclick="checkProduct()">Prüfen</button>
+            <button id="check-button" type="button">Prüfen</button>
         </form>
         
         <button id="scan-button" onclick="startScanner()">Barcode scannen</button>
-        <style>
-            #scanner video{
-                width:100%;
-                max-width: 320px;
-            }
-        </style>
-        <div id="scanner" style="width:100%" ></div>
         
-        <div id="result"></div>
+        <div id="result">
+            <!-- Hier werden die Ergebnisse angezeigt -->
+            <p id="result-text"></p>
+            <img id="product-image" src="" alt="Produktbild" style="max-width: 100%; display: none;">
+        </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/@ericblade/quagga2/dist/quagga.min.js">
-                
-    <!-- script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js" --></script>
-    <script src="scripts.js"></script>
+
+    <div id="credits">
+        <p>
+            <a href="https://github.com/MartinMohr" target="_blank" style="color: white; text-decoration: none;">@MartinMohr</a> 
+            <a href="https://github.com/DundreDE" target="_blank" style="color: white; text-decoration: none;">@Native</a> 
+        </p>
+    </div>
+
+    <script src="scripts.js" defer></script>
 </body>
 </html>

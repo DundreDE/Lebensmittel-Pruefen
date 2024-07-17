@@ -92,10 +92,26 @@ button:hover {
     font-size: 1em;
     color: #fff;
     backdrop-filter: blur(10px); /* Weicher Unschärfeeffekt */
+    text-align: center; /* Zentriert den Inhalt horizontal */
+}
+
+#product-image {
+    max-width: 100%;
+    display: none;
+    margin: auto; /* Zentriert das Bild horizontal */
 }
 
 @media (max-width: 600px) {
     .container {
         padding: 10px;
     }
+}
+
+#credits {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    color: white;
+    font-size: 14px;
+    opacity: 0.7; /* Optional: Für leichte Transparenz */
 }
